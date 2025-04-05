@@ -1,13 +1,27 @@
-# 📊 Exploratory Data Analysis (EDA) Project
+# 📊 Coffee Chain EDA Project
 
-## 📝 Project Overview  
-This project focuses on **Exploratory Data Analysis (EDA)** to understand patterns, relationships, and insights within a dataset. The analysis will cover data cleaning, statistical summaries, and visualizations.
+## 📝 Project Title  
+**Understanding Market Trends in a Coffee Retail Chain**
 
-## 📂 Current Progress  
-- ✅ Project initialized  
-- ✅ Basic setup completed  
-- 🔲 Dataset selection (in progress)  
-- 🔲 Data cleaning & analysis (coming soon)  
+---
+
+## ✅ Work Completed
+
+#### 1. Dataset Overview
+- Loaded dataset: `Coffee_Chain.csv`
+- Displayed first few rows using `.head()`
+- Inspected data types and non-null counts using `.info()`
+
+#### 2. Data Checks
+- Checked for **missing values**
+- Checked for **duplicate rows**
+- Generated **summary statistics** using `.describe()`
+- Printed all column names for review
+  
+## 📌 Notes
+- No visualizations or transformations have been done yet
+- Data looks ready for cleaning and deeper analysis
+- Will proceed with data cleaning and visualization in next commit
 
 ## 🔧 Installation & Setup  
 
