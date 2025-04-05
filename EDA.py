@@ -2,6 +2,8 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
+'''Data Reference -> https://data.world/adsafj/coffee-shop/workspace/file?filename=Coffee+Chain.csv'''
+
 # Load the dataset
 df = pd.read_csv('Coffee_Chain.csv')
 
