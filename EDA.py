@@ -20,3 +20,5 @@ print("\nSummarizing the data:\n")
 print(df.describe())
 print("\nColumns in the dataset:\n")
 print(df.columns.tolist())
+
+#Data Cleaning
