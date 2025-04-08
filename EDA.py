@@ -111,18 +111,8 @@ plt.xticks(rotation=45)
 plt.tight_layout()
 plt.show()
 
-# 2. Top 10 Products by Sales
+# 2. Sales vs Profit for Products
 top_products = df.groupby('Product')[['Coffee Sales', 'Profit']].sum().sort_values(by='Coffee Sales', ascending=False).head(10).reset_index()
-
-plt.figure(figsize=(12, 6))
-sns.barplot(data=top_products, x='Coffee Sales', y='Product', hue='Product', palette='viridis', legend=False)
-plt.title("Top 10 Products by Coffee Sales")
-plt.xlabel("Coffee Sales")
-plt.ylabel("Product")
-plt.tight_layout()
-plt.show()
-
-# 3. Sales vs Profit for Products
 x = top_products['Coffee Sales']
 y = top_products['Profit']
 labels = top_products['Product']
