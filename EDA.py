@@ -86,3 +86,60 @@ plt.xticks(rotation=45)
 plt.tight_layout()
 plt.show()
 
+
+'''2nd Product and Product Type Trends'''
+
+
+# 1. Product Type Analysis
+product_type_perf = df.groupby('Product Type')[['Coffee Sales', 'Profit']].sum().sort_values(by='Coffee Sales', ascending=False).reset_index()
+
+plt.figure(figsize=(10, 5))
+sns.barplot(data=product_type_perf, x='Product Type', y='Coffee Sales', hue='Product Type', palette='coolwarm', legend=False)
+plt.title("Coffee Sales by Product Type")
+plt.xlabel("Product Type")
+plt.ylabel("Total Coffee Sales")
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.show()
+
+plt.figure(figsize=(10, 5))
+sns.barplot(data=product_type_perf, x='Product Type', y='Profit', hue='Product Type', palette='Pastel1', legend=False)
+plt.title("Profit by Product Type")
+plt.xlabel("Product Type")
+plt.ylabel("Total Profit")
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.show()
+
+# 2. Top 10 Products by Sales
+top_products = df.groupby('Product')[['Coffee Sales', 'Profit']].sum().sort_values(by='Coffee Sales', ascending=False).head(10).reset_index()
+
+plt.figure(figsize=(12, 6))
+sns.barplot(data=top_products, x='Coffee Sales', y='Product', hue='Product', palette='viridis', legend=False)
+plt.title("Top 10 Products by Coffee Sales")
+plt.xlabel("Coffee Sales")
+plt.ylabel("Product")
+plt.tight_layout()
+plt.show()
+
+# 3. Sales vs Profit for Products
+x = top_products['Coffee Sales']
+y = top_products['Profit']
+labels = top_products['Product']
+
+plt.figure(figsize=(10, 6))
+
+# Scatter plot
+plt.scatter(x, y, color='crimson', marker='o', s=100, label='Products')
+
+# Add annotations for each point
+for i in range(len(labels)):
+    plt.text(x[i] + 100, y[i], labels[i], fontsize=10)
+
+plt.title("Scatter Plot - Coffee Sales vs Profit (Top 10 Products)")
+plt.xlabel("Coffee Sales")
+plt.ylabel("Profit")
+plt.legend()
+plt.grid(True)
+plt.tight_layout()
+plt.show()
