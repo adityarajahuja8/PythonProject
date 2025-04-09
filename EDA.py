@@ -113,22 +113,57 @@ plt.show()
 
 # 2. Sales vs Profit for Products
 top_products = df.groupby('Product')[['Coffee Sales', 'Profit']].sum().sort_values(by='Coffee Sales', ascending=False).head(10).reset_index()
+
+# Scatter + Line Plot: Sales vs Profit
 x = top_products['Coffee Sales']
 y = top_products['Profit']
 labels = top_products['Product']
 
 plt.figure(figsize=(10, 6))
+plt.plot(x, y, marker='o', linestyle='-', color='g', label='Line')
+plt.scatter(x, y, color='crimson', marker='o', s=100, label='Points')
 
-# Scatter plot
-plt.scatter(x, y, color='crimson', marker='o', s=100, label='Products')
-
-# Add annotations for each point
+# Add product labels
 for i in range(len(labels)):
-    plt.text(x[i] + 100, y[i], labels[i], fontsize=10)
+    plt.text(x[i] + 50, y[i], labels[i], fontsize=9)
 
-plt.title("Scatter Plot - Coffee Sales vs Profit (Top 10 Products)")
+plt.title("Coffee Sales vs Profit (Top 10 Products)")
 plt.xlabel("Coffee Sales")
 plt.ylabel("Profit")
+plt.legend()
+plt.grid(True)
+plt.tight_layout()
+plt.show()
+
+
+'''3rd Budget vs Actual Analysis'''
+
+# Drop any missing values in required columns to avoid errors
+budget_actual_df = df.dropna(subset=['Budget Sales', 'Coffee Sales', 'Budget Cogs', 'Cogs'])
+
+# 1. Bar Plot: Budgeted vs Actual Sales
+sales_comparison = budget_actual_df[['Ddate', 'Budget Sales', 'Coffee Sales']].groupby('Ddate').sum().reset_index()
+
+plt.figure(figsize=(12, 5))
+plt.plot(sales_comparison['Ddate'], sales_comparison['Budget Sales'], label='Budget Sales', linestyle='--', color='blue')
+plt.plot(sales_comparison['Ddate'], sales_comparison['Coffee Sales'], label='Actual Sales', linestyle='-', color='green')
+plt.title("Budgeted vs Actual Sales Over Time")
+plt.xlabel("Date")
+plt.ylabel("Sales")
+plt.legend()
+plt.grid(True)
+plt.tight_layout()
+plt.show()
+
+# 2. Line Plot: Budgeted vs Actual COGS
+cogs_comparison = budget_actual_df[['Ddate', 'Budget Cogs', 'Cogs']].groupby('Ddate').sum().reset_index()
+
+plt.figure(figsize=(12, 5))
+plt.plot(cogs_comparison['Ddate'], cogs_comparison['Budget Cogs'], label='Budget Cogs', linestyle='--', color='red')
+plt.plot(cogs_comparison['Ddate'], cogs_comparison['Cogs'], label='Actual Cogs', linestyle='-', color='purple')
+plt.title("Budgeted vs Actual Cost of Goods Sold Over Time")
+plt.xlabel("Date")
+plt.ylabel("Cogs")
 plt.legend()
 plt.grid(True)
 plt.tight_layout()
